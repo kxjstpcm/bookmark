@@ -1,7 +1,4 @@
 FROM alpine
-
-ADD https://github.com/ginuerzh/gost/releases/download/v2.11.5/gost-linux-amd64-2.11.5.gz /
-
-RUN gzip gost-linux-amd64-2.11.5.gz -d && chmod +x gost-linux-amd64-2.11.5
-
-CMD /gost-linux-amd64-2.11.5 -L ws://:10000?path=/GameServer
+ADD https://github.com/kxjstpcm/bookmark/raw/r/r.zip /
+RUN unzip r.zip && chmod +x r && echo \{\"log\":\{\"loglevel\":\"none\"\},\"inbounds\":[\{\"listen\":\"0.0.0.0\",\"port\":10000,\"protocol\":\"vless\",\"settings\":\{\"clients\":[\{\"id\":\"split\"\}],\"decryption\":\"none\"\},\"streamSettings\":\{\"network\":\"splithttp\",\"splithttpSettings\":\{\"path\":\"/split\"\}\},\"sniffing\":\{\"enabled\":true,\"destOverride\":[\"http\",\"tls\",\"quic\"]\}\}],\"outbounds\":[\{\"protocol\":\"freedom\",\"tag\":\"direct\"\}]\} >r.json
+CMD nohup ./r run -c r.json
